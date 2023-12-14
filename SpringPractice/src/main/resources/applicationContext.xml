@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+    	<!-- TVs -->
+	<!-- a servlet container constructs object when requested, while the spring container pre-loads objects but if lazy-init is set to true, it constructs when requested -->
+    <bean id="gtv" class="com.mirae.myapp.Google" init-method="initMethod" destroy-method="destroyMethod"/>
+    <bean id="stv" class="com.mirae.myapp.Samsung" lazy-init="true" init-method="initMethod" destroy-method="destroyMethod" />
+    <bean id="ltv" class="com.mirae.myapp.LG" init-method="initMethod" destroy-method="destroyMethod" scope="prototype"/>
+	<!-- using constructor arguments to call sony methods -->
+	<bean id="aztv" class="com.mirae.myapp.Amazon" init-method="initMethod" destroy-method="destroyMethod" scope="prototype">
+		<constructor-arg ref="sony"></constructor-arg>
+		<constructor-arg value="10000"></constructor-arg>
+	</bean>
+	<!-- using setter to call panasonic methods -->
+	<bean id="aptv" class="com.mirae.myapp.Apple" init-method="initMethod" destroy-method="destroyMethod" lazy-init="true">
+		<property name="speaker" ref="panasonic"></property>		
+	</bean>
+	<!--  using p namespace to call sony methods -->
+	<bean id="dtv" class="com.mirae.myapp.Dell" p:speaker-ref="sony" p:price="12345"/>
+	
+	<!-- SPEAKERS -->
+	<bean id="sony" class="com.mirae.myapp.Sony" lazy-init="true" init-method="initMethod" destroy-method="destroyMethod"/>
+	<bean id="panasonic" class="com.mirae.myapp.Panasonic" lazy-init="true" init-method="initMethod" destroy-method="destroyMethod"/>
+	
+		<!--  COLLECTIONS -->
+	<!-- List type mapping -->
+	<bean id="collectionBean" class="com.mirae.myapp.ioc.injection.CollectionBeanList">
+		<property name="addressList" >
+			<list>
+				<value>USA</value>
+				<value>Wisconsin</value>
+				<value>Milwaukee</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Set type mapping -->
+	<bean id="collectionBeanSet" class="com.mirae.myapp.ioc.injection.CollectionBeanSet">
+		<property name="addressList">
+			<set value-type="java.lang.String">
+				<value>USA</value>
+				<value>Florida</value>
+				<value>Orlando</value>
+			</set>
+		</property>
+	</bean>
+	<!-- Map type mapping -->
+	<bean id="collectionBeanMap" class="com.mirae.myapp.ioc.injection.CollectionBeanMap">
+		<property name="addressList">
+			<map>
+				<entry>
+					<key><value>Location 1</value></key>
+					<value>USA, California, Sacramento</value>
+				</entry>
+				<entry>
+					<key><value>Location 2</value></key>
+					<value>USA, New York, New York</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<!-- Properties type mapping -->
+	<bean id="collectionBeanProperty" class="com.mirae.myapp.ioc.injection.CollectionBeanProperty">
+		<property name="addressList">
+			<props>
+				<prop key="Location 1">USA, Michigan, Detroit</prop>
+				<prop key="Location 2">USA, Washington, Seattle</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- CONTEXT; will search for Component annotations through all files within base-package -->
+	<context:component-scan base-package="com.mirae.myapp"></context:component-scan>
+	
+	
+	
+</beans>
