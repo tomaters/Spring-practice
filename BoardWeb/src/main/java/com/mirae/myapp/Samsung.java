@@ -2,8 +2,6 @@ package com.mirae.myapp;
 
 public class Samsung implements TV {
 	
-	private Sony speaker;
-	
 	public Samsung() {
 		System.out.println("Samsung object constructed");
 	}
@@ -28,11 +26,11 @@ public class Samsung implements TV {
 
 	@Override
 	public void volumeUp() {
-		speaker.volumeUp();
+		System.out.println("Samsung volume up");
 	}
 
 	@Override
 	public void volumeDown() {
-		speaker.volumeDown();
+		System.out.println("Samsung volume down");
 	}
 }

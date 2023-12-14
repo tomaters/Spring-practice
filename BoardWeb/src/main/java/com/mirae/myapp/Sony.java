@@ -1,6 +1,6 @@
 package com.mirae.myapp;
 
-public class Sony {
+public class Sony implements Speaker {
 
 	public Sony() {
 		System.out.println("Sony object constructed");
@@ -20,5 +20,13 @@ public class Sony {
 	
 	public void volumeDown() {
 		System.out.println("Sony volume down");		
+	}
+	
+	public void initMethod() {
+		System.out.println("Sony initMethod");
+	}
+	
+	public void destroyMethod() {
+		System.out.println("Sony destroyMethod");
 	}
 }
