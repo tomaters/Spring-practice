@@ -6,23 +6,31 @@ public class Google implements TV {
 		System.out.println("Google object constructed");
 	}
 	
+	public void initMethod() {
+		System.out.println("Google initMethod");
+	}
+	
+	public void destroyMethod() {
+		System.out.println("Google destroyMethod");
+	}
+	
 	@Override
 	public void powerOn() {
-		System.out.println("GG power on");
+		System.out.println("Google power on");
 	}
 
 	@Override
 	public void powerOff() {
-		System.out.println("GG power off");
+		System.out.println("Google power off");
 	}
 
 	@Override
 	public void volumeUp() {
-		System.out.println("GG volume up");
+		System.out.println("Google volume up");
 	}
 
 	@Override
 	public void volumeDown() {
-		System.out.println("GG volume down");
+		System.out.println("Google volume down");
 	}
 }

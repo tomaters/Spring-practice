@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <bean id="tv" class="com.mirae.myapp.Google"></bean>
+	<!-- a servlet container constructs object when requested, while the spring container pre-loads objects but if lazy-init is set to true, it constructs when requested -->
+    <bean id="gtv" class="com.mirae.myapp.Google" init-method="initMethod" destroy-method="destroyMethod"/>
+    <bean id="stv" class="com.mirae.myapp.Samsung" lazy-init="true" init-method="initMethod" destroy-method="destroyMethod" />
+    <bean id="ltv" class="com.mirae.myapp.LG" init-method="initMethod" destroy-method="destroyMethod" scope="prototype"/>
 
 </beans>

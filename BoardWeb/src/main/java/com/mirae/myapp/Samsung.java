@@ -2,27 +2,37 @@ package com.mirae.myapp;
 
 public class Samsung implements TV {
 	
+	private Sony speaker;
+	
 	public Samsung() {
 		System.out.println("Samsung object constructed");
 	}
 
+	public void initMethod() {
+		System.out.println("Samsung initMethod");
+	}
+	
+	public void destroyMethod() {
+		System.out.println("Samsung destroyMethod");
+	}
+	
 	@Override
 	public void powerOn() {
-		System.out.println("SS power on");
+		System.out.println("Samsung power on");
 	}
 
 	@Override
 	public void powerOff() {
-		System.out.println("SS power off");
+		System.out.println("Samsung power off");
 	}
 
 	@Override
 	public void volumeUp() {
-		System.out.println("SS volume up");
+		speaker.volumeUp();
 	}
 
 	@Override
 	public void volumeDown() {
-		System.out.println("SS volume down");
+		speaker.volumeDown();
 	}
 }

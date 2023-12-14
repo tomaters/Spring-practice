@@ -6,6 +6,14 @@ public class LG implements TV {
 		System.out.println("LG object constructed");
 	}
 	
+	public void initMethod() {
+		System.out.println("LG initMethod");
+	}
+	
+	public void destroyMethod() {
+		System.out.println("LG destroyMethod");
+	}
+	
 	@Override
 	public void powerOn() {
 		System.out.println("LG power on");
