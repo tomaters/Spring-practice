@@ -5,16 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class JDBCUtil {
+public class OracleJDBCUtil {
 	public static Connection getConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			// connection path, DB username, password
 			return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
-/* code for h2 connection
-			Class.forName("org.h2.Driver");
-			return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "");
-*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

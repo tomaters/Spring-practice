@@ -15,13 +15,28 @@ public class BoardServiceImplement implements BoardService {
 	
 	@Override
 	public void insertBoard(BoardVO boardVO) {
+		// PRE-BUSINESS LOGIC LOGGING
+		
+		// BUSINESS LOGIC
 		boardDAO.insertBoard(boardVO);
+		// toggle try-catch clause to invoke/revoke printLog4() after-throwing method
+		if(boardVO.getSequence()==0) {
+			try {
+				throw new IllegalArgumentException("Error message");								
+			} catch(IllegalArgumentException e) {}
+		}
+		
+		// EXCEPTION HANDLING
+		
+		// TRANSACTION HANDLING
+		
+		// "POST-BUSINESS LOGIC LOGGING"
+		
 	}
 
 	@Override
 	public void updateBoard(BoardVO boardVO) {
 		boardDAO.updateBoard(boardVO);
-		
 	}
 
 	@Override
