@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mirae</groupId>
 	<artifactId>myapp</artifactId>
-	<name>BoardWeb2</name>
+	<name>Board</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

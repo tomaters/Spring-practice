@@ -20,6 +20,7 @@ public class UserDAO {
 	
 	public UserVO getUser(UserVO userVO) {
 		UserVO user = null;
+		System.out.println(userVO.getId() + userVO.getPassword());
 		try {
 			System.out.println("getUser() method called");
 			connection = JDBCUtil.getConnection();
