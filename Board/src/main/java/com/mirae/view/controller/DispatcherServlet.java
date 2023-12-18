@@ -117,7 +117,7 @@ public class DispatcherServlet extends HttpServlet {
 			boardDAO.deleteBoard(vo);
 			
 			// 3. navigate view
-			response.sendRedirect("getBoardList.do");
+			response.sendRedirect("deleteBoard.jsp");
 			
 		} else if (path.equals("/getBoard.do")) {
 			System.out.println("Search function");
