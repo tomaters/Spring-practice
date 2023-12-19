@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container-sm bg-secondary mx-auto p-4 border-bottom">
-        <h4 class="text-center text-muted">Hello</h4><hr/>
+        <h4 class="text-center text-muted">Sign in</h4><hr/>
         <form action="login.do" method="post">
         <table class="container table text-center table-bordered w-50 mx-auto table-dark shadow">
                 <tr>
@@ -29,6 +29,9 @@
                     </td>
                 </tr>
         </table>
+        <div style="text-align: right; font-style: italic;">
+					<a class="text-decoration-none text-muted" href="createAccount.jsp"><p class="text-white">Create an account<p></a>
+				</div>
         </form>
     </div>
 </body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Write a new article</title>
+<title>Write article</title>
 <!-- Bootstrap: Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Bootstrap: Latest compiled and minified CSS -->

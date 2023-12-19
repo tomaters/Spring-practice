@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page import="com.mirae.board.implement.BoardDAO"%>
-<%@ page import="com.mirae.board.BoardVO"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<!--  replaced with JSTL
+page import="java.util.List"
+page import="com.mirae.board.implement.BoardDAO"
+page import="com.mirae.board.BoardVO"
 
-<%
-// retrieve session articles list
 List<BoardVO> boardList = (List) session.getAttribute("boardList");
-%>
-
+ -->
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Articles list</title>
+<title>Board</title>
 <!-- Bootstrap: Latest compiled and minified CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap: Latest compiled JavaScript -->
@@ -21,7 +21,7 @@ List<BoardVO> boardList = (List) session.getAttribute("boardList");
 </head>
 <body>
 	<div class="container-sm bg-secondary mx-auto p-4 border-bottom">
-		<h1 class="text-center text-muted">Articles list</h1>
+		<h1 class="text-center text-muted">Articles</h1>
 		<h5 align="right">
 			<div style="text-align: right; font-style: italic;">
 			<a class="text-decoration-none text-muted" href="logout.do"><p class="text-white">Log out</p></a>
@@ -55,19 +55,27 @@ List<BoardVO> boardList = (List) session.getAttribute("boardList");
 				</tr>
 			</thead>
 
-			<%
+			<c:forEach items="${boardList}" var="board">
+				<tr>
+					<td>${board.sequence}</td>
+					<td align="left"><a class="text-decoration-none"	href="getBoard.do?sequence=${board.sequence}">${board.title}</a></td>
+					<td>${board.username}</td>
+					<td>${board.regDate}</td>
+					<td>${board.count}</td>
+				</tr>
+			</c:forEach>
+			
+			<!-- replaced with JSTL
 			for (BoardVO board : boardList) {
-			%>
+			>
 			<tr>
-				<td><%=board.getSequence()%></td>
-				<td align="left"><a class="text-decoration-none "	href="getBoard.do?sequence=<%=board.getSequence()%>"><%=board.getTitle()%></a></td>
-				<td><%=board.getUsername()%></td>
-				<td><%=board.getRegDate()%></td>
-				<td><%=board.getCount()%></td>
+				<td><=board.getSequence()%></td>
+				<td align="left"><a class="text-decoration-none "	href="getBoard.do?sequence=<=board.getSequence()%>"><=board.getTitle()%></a></td>
+				<td><=board.getUsername()%></td>
+				<td><=board.getRegDate()%></td>
+				<td><=board.getCount()%></td>
 			</tr>
-			<%
-			}
-			%>
+			<}>  -->
 		</table> 
 			<div style="text-align: center; font-style: italic;">
 				<a class="text-decoration-none text-muted" href="insertBoard.jsp"><p class="text-white">Submit an article<p></a>
