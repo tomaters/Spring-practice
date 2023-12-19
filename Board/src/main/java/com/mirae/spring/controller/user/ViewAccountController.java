@@ -1,0 +1,38 @@
+package com.mirae.spring.controller.user;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+import com.mirae.biz.user.UserVO;
+import com.mirae.biz.user.bimplement.UserDAO;
+
+public class ViewAccountController implements Controller {
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("process view account");
+		HttpSession session = request.getSession();
+
+		// 1. get article number
+		String id = (String)session.getAttribute("id");
+
+		System.out.println("ViewAccountController id: " + id);
+		
+		// 2. manage DB
+		UserDAO userDAO = new UserDAO();
+		UserVO userVO = null;
+		userVO = userDAO.viewAccount(id);
+		System.out.println("userVO values: " + userVO.getId() + ", " + userVO.getPassword() + ", " + userVO.getName() + ", " + userVO.getRole());
+		// 3. get response view
+		ModelAndView mav = new ModelAndView();
+//		session.setAttribute("user", userVO);
+		mav.addObject("user", userVO);
+//		return "viewAccount";
+		mav.setViewName("viewAccount.jsp");
+		return mav;
+	}
+}
