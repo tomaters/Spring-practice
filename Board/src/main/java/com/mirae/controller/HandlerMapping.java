@@ -11,6 +11,7 @@ import com.mirae.controller.board.LoginController;
 import com.mirae.controller.board.LogoutController;
 import com.mirae.controller.board.UpdateBoardController;
 import com.mirae.controller.user.CreateAccountController;
+import com.mirae.controller.user.ViewAccountController;
 
 public class HandlerMapping {
 	private Map<String, Controller> mappings;
@@ -29,6 +30,7 @@ public class HandlerMapping {
 		mappings.put("/updateBoard.do", new UpdateBoardController());
 		// User
 		mappings.put("/createAccount.do", new CreateAccountController());
+		mappings.put("/viewAccount.do", new ViewAccountController());
 	}
 	
 	public Controller getController(String path) {

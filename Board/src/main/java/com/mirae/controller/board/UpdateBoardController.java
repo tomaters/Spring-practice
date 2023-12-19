@@ -3,8 +3,8 @@ package com.mirae.controller.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mirae.board.BoardVO;
-import com.mirae.board.implement.BoardDAO;
+import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.implement.BoardDAO;
 import com.mirae.controller.Controller;
 
 public class UpdateBoardController implements Controller {

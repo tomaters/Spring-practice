@@ -22,11 +22,14 @@ List<BoardVO> boardList = (List) session.getAttribute("boardList");
 <body>
 	<div class="container-sm bg-secondary mx-auto p-4 border-bottom">
 		<h1 class="text-center text-muted">Articles</h1>
-		<h5 align="right">
+		<h6 align="right">
 			<div style="text-align: right; font-style: italic;">
-			<a class="text-decoration-none text-muted" href="logout.do"><p class="text-white">Log out</p></a>
+				<a class="text-decoration-none text-muted" href="logout.do"><p class="text-white">Log out</p></a>
 			</div>
-		</h5>
+			<div style="text-align: right; font-style: italic;">
+				<a class="text-decoration-none text-muted" href="viewAccount.do"><p class="text-white">View account info</p></a>
+			</div>
+		</h6>
 
 		<!-- Search function -->
 		<form action="getBoardList.jsp" method="post">

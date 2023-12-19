@@ -11,14 +11,14 @@
     <context:component-scan base-package="com.mirae"></context:component-scan>
     <aop:aspectj-autoproxy />
     
-    <bean id="log1" class="com.mirae.common.LogAdvice"></bean>
-    <bean id="log2" class="com.mirae.common.LogAdvice2"></bean>
+    <bean id="log1" class="com.mirae.biz.common.LogAdvice"></bean>
+    <bean id="log2" class="com.mirae.biz.common.LogAdvice2"></bean>
     
     <aop:config>
     	<!--  among all methods, only want to designate pointcut to methods in Implement files -->
-    	<aop:pointcut expression="execution(* com.mirae..*Implement.*(..))" id="allPointcut"/>
+    	<aop:pointcut expression="execution(* com.mirae.biz..*Implement.*(..))" id="allPointcut"/>
     	
-    	<aop:pointcut expression="execution(* com.mirae..*Implement.get*(..))" id="getPointcut"/>
+    	<aop:pointcut expression="execution(* com.mirae.biz..*Implement.get*(..))" id="getPointcut"/>
 
     	<aop:aspect ref="log1"> <!-- AFTER -->
     		<aop:after method="printLog" pointcut-ref="allPointcut"/>

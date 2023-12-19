@@ -2,10 +2,11 @@ package com.mirae.controller.board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.mirae.biz.user.UserVO;
+import com.mirae.biz.user.bimplement.UserDAO;
 import com.mirae.controller.Controller;
-import com.mirae.user.UserVO;
-import com.mirae.user.implement.UserDAO;
 
 public class LoginController implements Controller {
 
@@ -26,6 +27,8 @@ public class LoginController implements Controller {
 
 		// 3. navigate view
 		if (user != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("id", id);
 			// if *.do is sent, it will call /getBoardList.do and not directly call a view
 			return "getBoardList.do";
 		} else {

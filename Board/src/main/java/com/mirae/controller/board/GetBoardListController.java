@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mirae.board.BoardVO;
-import com.mirae.board.implement.BoardDAO;
+import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.implement.BoardDAO;
 import com.mirae.controller.Controller;
 
 public class GetBoardListController implements Controller {

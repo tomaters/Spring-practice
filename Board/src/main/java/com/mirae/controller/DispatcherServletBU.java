@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mirae.board.BoardVO;
-import com.mirae.board.implement.BoardDAO;
-import com.mirae.user.UserVO;
-import com.mirae.user.implement.UserDAO;
+import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.implement.BoardDAO;
+import com.mirae.biz.user.UserVO;
+import com.mirae.biz.user.bimplement.UserDAO;
 
 public class DispatcherServletBU extends HttpServlet {
 	private static final long serialVersionUID = 1L;

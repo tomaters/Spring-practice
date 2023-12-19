@@ -28,7 +28,7 @@ public class DispatcherServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String role = request.getParameter("role");
 
-		System.out.println("DISPATCHER: " + id + " " + password + " " + name + " " + role);
+		System.out.println("DISPATCHER UserVO: " + id + " " + password + " " + name + " " + role);
 		
 		
 		// get info
