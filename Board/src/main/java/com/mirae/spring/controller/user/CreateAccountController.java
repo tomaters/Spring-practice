@@ -35,7 +35,7 @@ public class CreateAccountController implements Controller {
 
 		// 3. get response view
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login.do");
+		mav.setViewName("login.jsp");
 		return mav;
 	}
 }

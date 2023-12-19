@@ -12,11 +12,11 @@
 				<prop key="/getBoard.do">getBoard</prop>
 				<prop key="/getBoardList.do">getBoardList</prop>
 				<prop key="/insertBoard.do">insertBoard</prop>
-				<prop key="/login.do">login</prop>
-				<prop key="/logout.do">logout</prop>
 				<prop key="/updateBoard.do">updateBoard</prop>
 				<!-- user -->
 				<prop key="/createAccount.do">createAccount</prop>
+				<prop key="/login.do">login</prop>
+				<prop key="/logout.do">logout</prop>
 				<prop key="/viewAccount.do">viewAccount</prop>
 				
 			</props>
@@ -29,10 +29,10 @@
 	<bean id="getBoard" class="com.mirae.spring.controller.board.GetBoardController"></bean>
 	<bean id="getBoardList" class="com.mirae.spring.controller.board.GetBoardListController"></bean>
 	<bean id="insertBoard" class="com.mirae.spring.controller.board.InsertBoardController"></bean>
-	<bean id="login" class="com.mirae.spring.controller.board.LoginController"></bean>
-	<bean id="logout" class="com.mirae.spring.controller.board.LogoutController"></bean>
 	<bean id="updateBoard" class="com.mirae.spring.controller.board.UpdateBoardController"></bean>
 	<!-- user -->
 	<bean id="createAccount" class="com.mirae.spring.controller.user.CreateAccountController"></bean>
+	<bean id="login" class="com.mirae.spring.controller.user.LoginController"></bean>
+	<bean id="logout" class="com.mirae.spring.controller.user.LogoutController"></bean>
 	<bean id="viewAccount" class="com.mirae.spring.controller.user.ViewAccountController"></bean>
 </beans>

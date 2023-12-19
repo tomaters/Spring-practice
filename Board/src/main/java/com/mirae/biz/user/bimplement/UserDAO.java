@@ -33,14 +33,12 @@ public class UserDAO {
 			if(resultSet.next()) {
 				user = new UserVO();
 				user.setId(resultSet.getString("id"));
-				user.setPassword(resultSet.getString("passsword"));
-				user.setName(resultSet.getString("name"));
-				user.setRole(resultSet.getString("role"));				
+				user.setPassword(resultSet.getString("password"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-			JDBCUtil.close(resultSet,  preparedStatement, connection);
+			JDBCUtil.close(resultSet, preparedStatement, connection);
 		} return user;
 	}
 	

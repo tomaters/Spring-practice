@@ -1,4 +1,4 @@
-package com.mirae.spring.controller.board;
+package com.mirae.spring.controller.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
