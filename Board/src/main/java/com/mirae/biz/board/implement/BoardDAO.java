@@ -19,7 +19,7 @@ public class BoardDAO {
 
 	// SQL statements
 	private final String BOARD_INSERT = "INSERT INTO myboard(sequence, title, username, content) VALUES ((SELECT NVL(MAX(sequence), 0)+1 FROM myboard), ?, ?, ?)";
-	private final String BOARD_UPDATE = "UPDATE myboard SET title=?, content=? where sequence=?";
+	private final String BOARD_UPDATE = "UPDATE myboard SET title=?, content=? WHERE sequence=?";
 	private final String BOARD_DELETE = "DELETE FROM myboard WHERE sequence=?";
 	private final String BOARD_GET = "SELECT * FROM myboard WHERE sequence=?";
 	private final String BOARD_LIST = "SELECT * FROM myboard ORDER BY sequence DESC";
@@ -84,12 +84,12 @@ public class BoardDAO {
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				board = new BoardVO();
-				board.setSequence(resultSet.getInt("SEQUENCE"));
-				board.setTitle(resultSet.getString("TITLE"));
-				board.setUsername(resultSet.getString("USERNAME"));
-				board.setContent(resultSet.getString("CONTENT"));
-				board.setRegDate(resultSet.getDate("REGDATE"));
-				board.setCount(resultSet.getInt("COUNT"));
+				board.setSequence(resultSet.getInt("sequence"));
+				board.setTitle(resultSet.getString("title"));
+				board.setUsername(resultSet.getString("username"));
+				board.setContent(resultSet.getString("content"));
+				board.setRegDate(resultSet.getDate("regdate"));
+				board.setCount(resultSet.getInt("count"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,12 +109,12 @@ public class BoardDAO {
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				BoardVO board = new BoardVO();
-				board.setSequence(resultSet.getInt("SEQUENCE"));
-				board.setTitle(resultSet.getString("TITLE"));
-				board.setUsername(resultSet.getString("USERNAME"));
-				board.setContent(resultSet.getString("CONTENT"));
-				board.setRegDate(resultSet.getDate("REGDATE"));
-				board.setCount(resultSet.getInt("COUNT"));
+				board.setSequence(resultSet.getInt("sequence"));
+				board.setTitle(resultSet.getString("title"));
+				board.setUsername(resultSet.getString("username"));
+				board.setContent(resultSet.getString("content"));
+				board.setRegDate(resultSet.getDate("regdate"));
+				board.setCount(resultSet.getInt("count"));
 				boardList.add(board);
 			}
 		} catch (Exception e) {

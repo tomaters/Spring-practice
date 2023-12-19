@@ -19,6 +19,7 @@ public class UserDAO {
 	private final String GET_USER = "SELECT * FROM users WHERE id=? AND password=?";
 	private final String VIEW_ACCOUNT = "SELECT * FROM users WHERE id=?";
 	private final String CREATE_USER = "INSERT INTO users VALUES(?, ?, ?, ?)";
+	private final String DELETE_ACCOUNT = "DELETE FROM users WHERE id=?";
 			
 	public UserVO getUser(UserVO userVO) {
 		UserVO user = null;
@@ -81,5 +82,20 @@ public class UserDAO {
 		} finally {
 			JDBCUtil.close(resultSet,  preparedStatement, connection);
 		} return user;
+	}
+	
+	// delete method
+	public void deleteAccount(UserVO userVO) {
+		System.out.println("deleteUser() called");
+		try {
+			connection = JDBCUtil.getConnection();
+			preparedStatement = connection.prepareStatement(DELETE_ACCOUNT);
+			preparedStatement.setString(1, userVO.getId());
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(preparedStatement, connection);
+		}
 	}
 }

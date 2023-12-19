@@ -17,7 +17,7 @@
 			<a class="text-decoration-none text-muted" href="logout.do"><p class="text-white">Log out</p></a>
 		</div>
 		<hr>
-		<form action="insertBoard.do" method="post">
+		<form action="insertBoard.do" method="post" name="writeform">
 			<table class="table text-center table-bordered table-dark w-75 mx-auto shadow">
 				<tr>
 					<td>Title</td>
@@ -32,7 +32,8 @@
 					<td align="left"><textarea name="content" rows="10" cols="80" class="p-2 overflow-auto rounded"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><button type="submit" class="btn btn-light">Submit article</button></td>
+					<td colspan="2" align="center">
+					<input type="button" class="btn btn-light" onclick="checkNull()" value="Submit article"/></td>
 				</tr>
 			</table>
 		</form>
@@ -42,4 +43,24 @@
 		</div>
 	</div>
 </body>
+
+<script>
+	function checkNull() {
+		if(document.writeform.title.value=="") {
+			alert("Please enter a title");
+			document.writeform.writer.focus();
+			return;
+		}
+		if(document.writeform.username.value=""){
+			alert("You are not logged in");
+			return;
+		}
+		if(document.writeform.content.value=""){
+			alert("Please enter the content");
+			document.writeform.content.focus();
+			return;
+		}
+		document.writeform.submit() 
+	}
+	</script>
 </html>
