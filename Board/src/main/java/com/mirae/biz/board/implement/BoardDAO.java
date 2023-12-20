@@ -23,6 +23,9 @@ public class BoardDAO {
 	private final String BOARD_DELETE = "DELETE FROM myboard WHERE sequence=?";
 	private final String BOARD_GET = "SELECT * FROM myboard WHERE sequence=?";
 	private final String BOARD_LIST = "SELECT * FROM myboard ORDER BY sequence DESC";
+	private final String BOARD_LIST_SEARCH_TITLE = "SELECT * FROM myboard WHERE title like '%' || ? || '%' ORDER BY sequence DESC";
+	private final String BOARD_LIST_SEARCH_USERNAME = "SELECT * FROM myboard WHERE username like '%' || ? || '%' ORDER BY sequence DESC";
+	private final String BOARD_LIST_SEARCH_CONTENT = "SELECT * FROM myboard WHERE content like '%' || ? || '%' ORDER BY sequence DESC";
 
 	// insert method
 	public void insertBoard(BoardVO boardVO) {
@@ -105,7 +108,22 @@ public class BoardDAO {
 		List<BoardVO> boardList = new ArrayList<>();
 		try {
 			connection = JDBCUtil.getConnection();
-			preparedStatement = connection.prepareStatement(BOARD_LIST);
+			if(boardVO.getSearchCondition().equals("title")) {
+				System.out.println(boardVO.getSearchCondition());
+				preparedStatement = connection.prepareStatement(BOARD_LIST_SEARCH_TITLE);
+				preparedStatement.setString(1, boardVO.getSearchKeyword());
+			}
+			else if(boardVO.getSearchCondition().equals("username")) {
+				preparedStatement = connection.prepareStatement(BOARD_LIST_SEARCH_USERNAME);
+				preparedStatement.setString(1, boardVO.getSearchKeyword());
+			}
+			else if(boardVO.getSearchCondition().equals("content")) {
+				preparedStatement = connection.prepareStatement(BOARD_LIST_SEARCH_CONTENT);
+				preparedStatement.setString(1, boardVO.getSearchKeyword());
+			}
+			else {
+				preparedStatement = connection.prepareStatement(BOARD_LIST);
+			}
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				BoardVO board = new BoardVO();

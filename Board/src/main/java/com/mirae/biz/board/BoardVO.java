@@ -2,6 +2,8 @@ package com.mirae.biz.board;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	private int sequence;
 	private String title;
@@ -9,20 +11,18 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int count;
+	private String searchCondition;
+	private String searchKeyword;
+	// to use, import library from MVN Repository: Apache Commons FileUpload into pom.xml
+	// also need to set MultipartResolver in presentation-layer.xml
+	private MultipartFile uploadFile; 
 
-	public BoardVO() {
-		super();
+	public MultipartFile getUploadFile() {
+		return uploadFile;
 	}
-	
-	public BoardVO(int sequence, String title, String username, String content, Date regDate, int count) {
-		this.sequence = sequence;
-		this.title = title;
-		this.username = username;
-		this.content = content;
-		this.regDate = regDate;
-		this.count = count;
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
 	}
-	
 	public int getSequence() {
 		return sequence;
 	}
@@ -59,10 +59,22 @@ public class BoardVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [sequence=" + sequence + ", title=" + title + ", username=" + username + ", content=" + content
-				+ ", regDate=" + regDate + ", count=" + count + "]";
-	}
+				+ ", regDate=" + regDate + ", count=" + count + ", searchCondition=" + searchCondition
+				+ ", searchKeyword=" + searchKeyword + ", uploadFile=" + uploadFile + "]";
+	}	
 }

@@ -20,28 +20,39 @@ List<BoardVO> boardList = (List) session.getAttribute("boardList");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<div class="container-sm bg-secondary mx-auto p-4 border-bottom">
-		<h1 class="text-center text-muted">Articles</h1>
+	<div class="container-lg bg-secondary mx-auto p-4 border-bottom">
+		<!-- name set as session attribute upon login -->
+		<h1 class="text-center text-muted">Hello, ${name}</h1>
 		<h6 align="right">
 			<div style="text-align: right; font-style: italic;">
 				<a class="text-decoration-none text-muted" href="logout.do"><p class="text-white">Log out</p></a>
 			</div>
 			<div style="text-align: right; font-style: italic;">
-				<a class="text-decoration-none text-muted" href="viewAccount.do"><p class="text-white">View account info</p></a>
+				<a class="text-decoration-none text-muted" href="viewAccount.do?user=${user.id}"><p class="text-white">View account info</p></a>
 			</div>
 		</h6>
 
 		<!-- Search function -->
-		<form action="getBoardList.jsp" method="post">
+		<form action="getBoardList.do" method="post">
 			<table class="table text-center table-bordered table-dark w-75 mx-auto shadow-lg">
 				<tr>
 					<td align="right">
-						<select class="rounded" name="searchCondition">
-								<option value="TITLE">Title
-								<option value="CONTENT">Content
-						</select> 
-						<input class="rounded" name="searchKeyword" type="text"> 
-						<input type="submit" value="Search">
+						
+						<!-- <select class="rounded" name="searchCondition">
+							<option value="title">Title
+							<option value="username">Username
+							<option value="content">Content
+						</select> --> 
+
+							<select name="searchCondition">
+								<option value="">Select option</option>
+								<c:forEach items="${conditionMap}" var="data">
+									<option value="${data.value}">${data.key}</option>
+								</c:forEach>
+							</select>
+							<input name="searchKeyword" type="text"/>
+							<input type="submit" value="Search"/>
+						
 						</td>
 				</tr>
 			</table>

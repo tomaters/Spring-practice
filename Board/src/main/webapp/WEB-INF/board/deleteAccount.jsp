@@ -25,11 +25,17 @@
 	                </tr>
 	                <tr>
 	                    <td colspan="2" align="center">
-	                        <button type="submit" class="btn btn-light w-25">Log in</button>
+	                        <button type="submit" class="btn btn-light w-25">Delete account</button>
 	                    </td>
 	                </tr>
 	        </table>
         </form>
     </div>
 </body>
+
+<script>
+function checkDelete(){
+	
+}
+</script>
 </html>

@@ -17,11 +17,11 @@
         <table class="container table text-center table-bordered w-50 mx-auto table-dark shadow">
                 <tr>
                     <td class="p-2 align-middle">Username</td>
-                    <td align="left"><input type="text" name="id" class="w-75 rounded bg-light" placeholder="Enter username"/></td>
+                    <td align="left"><input type="text" name="id" value="${userVO.id}" class="w-75 rounded bg-light" placeholder="Enter username"/></td>
                 </tr>
                 <tr>
                     <td class="p-2 align-middle">Password</td>
-                    <td align="left"><input type="password" name="password" class="w-75 rounded bg-light" placeholder="Enter password"></td>
+                    <td align="left"><input type="password" name="password" value="${userVO.password}" class="w-75 rounded bg-light" placeholder="Enter password"></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">

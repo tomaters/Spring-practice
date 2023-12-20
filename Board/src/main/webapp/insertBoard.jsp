@@ -17,7 +17,9 @@
 			<a class="text-decoration-none text-muted" href="logout.do"><p class="text-white">Log out</p></a>
 		</div>
 		<hr>
-		<form action="insertBoard.do" method="post" name="writeform">
+		<form action="insertBoard.do" method="post" name="writeform" onsubmit="return creationSuccess()" enctype="multipart/form-data">
+			<!-- hidden input field to hold id value -->
+			<input type="hidden" name="username" value="${id}"> 
 			<table class="table text-center table-bordered table-dark w-75 mx-auto shadow">
 				<tr>
 					<td>Title</td>
@@ -25,11 +27,15 @@
 				</tr>
 				<tr>
 					<td>Username</td>
-					<td align="left"><input class="w-75 rounded" type="text" name="username" size="10"></td>
+					<td align="left">${id}</td>
 				</tr>
 				<tr>
 					<td>Content</td>
 					<td align="left"><textarea name="content" rows="10" cols="80" class="p-2 overflow-auto rounded"></textarea></td>
+				</tr>
+				<tr>
+					<td>Upload File</td>
+					<td align="left"><input type="file" name="uploadFile"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
@@ -39,7 +45,7 @@
 		</form>
 		<hr>
 		<div style="text-align: right; font-style: italic;">
-		<a href="getBoardList.jsp" class="text-muted text-decoration-none"><p class="text-white">Article list</p></a>
+		<a href="getBoardList.do" class="text-muted text-decoration-none"><p class="text-white">Article list</p></a>
 		</div>
 	</div>
 </body>
@@ -48,19 +54,25 @@
 	function checkNull() {
 		if(document.writeform.title.value=="") {
 			alert("Please enter a title");
-			document.writeform.writer.focus();
+			document.writeform.title.focus();
 			return;
 		}
-		if(document.writeform.username.value=""){
+		if(document.writeform.username.value==""){
+			document.writeform.username.focus();
 			alert("You are not logged in");
 			return;
 		}
-		if(document.writeform.content.value=""){
+		if(document.writeform.content.value==""){
 			alert("Please enter the content");
 			document.writeform.content.focus();
 			return;
 		}
-		document.writeform.submit() 
+		document.writeform.submit();
+	}
+	
+	function creationSuccess() {
+		alert("Article created successfully");
+		return true;
 	}
 	</script>
 </html>

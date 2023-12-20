@@ -35,6 +35,8 @@ public class UserDAO {
 				user = new UserVO();
 				user.setId(resultSet.getString("id"));
 				user.setPassword(resultSet.getString("password"));
+				user.setName(resultSet.getString("name"));
+				user.setRole(resultSet.getString("role"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -86,7 +88,7 @@ public class UserDAO {
 	
 	// delete method
 	public void deleteAccount(UserVO userVO) {
-		System.out.println("deleteUser() called");
+		System.out.println("deleteAccount() called");
 		try {
 			connection = JDBCUtil.getConnection();
 			preparedStatement = connection.prepareStatement(DELETE_ACCOUNT);

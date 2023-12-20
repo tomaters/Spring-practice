@@ -17,11 +17,12 @@
 			<a class="text-decoration-none text-muted" href="login.do"><p class="text-white">Sign in</p></a>
 		</div>
 		<hr>
-		<form action="createAccount.do" method="post">
-			<table class="table text-center table-bordered table-dark w-25 mx-auto shadow">
+		<form action="createAccount.do" method="post" onsubmit="return creationSuccess()">
+			<div class="message" align="center" style="color: white; font-weight: bold; margin-bottom: 10px;"> test </div>
+			<table class="table text-center table-bordered table-dark w-25 mx-auto shadow" style="margin-bottom: 10px;">
 				<tr>
 					<td>Username</td>
-					<td align="left"><input class="w-100 rounded" type="text" name="id"></td>
+					<td align="left"><input class="w-100 rounded" type="text" name="id" onblur="checkDuplicate()"></td>
 				</tr>
 				<tr>
 					<td>Password</td>
@@ -48,4 +49,10 @@
 		<hr>
 	</div>
 </body>
+<script>
+	function creationSuccess(){
+			alert("Account created successfully");
+			return true;
+	}
+</script>
 </html>

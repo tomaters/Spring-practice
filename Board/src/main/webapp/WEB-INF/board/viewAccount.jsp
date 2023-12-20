@@ -46,8 +46,10 @@
 		</form>
 		<hr>
 		<div style="text-align: right; font-style: italic;">
-			<a href="deleteAccount.do?id=${user.id}" class="text-muted text-decoration-none"><p class="text-white">Delete account</p></a>
-			<a href="getBoardList.do" class="text-muted text-decoration-none"><p class="text-white">Article list</p></a>
+		<form action="deleteAccount.do" method="get">
+			<input type="submit" class="text-muted text-white" value="Delete Account"/>
+		</form>	
+			<a href="getBoardList.do" class="text-muted" text-decoration-none"><p class="text-white">Article list</p></a>
 		</div>
 	</div>
 </body>
