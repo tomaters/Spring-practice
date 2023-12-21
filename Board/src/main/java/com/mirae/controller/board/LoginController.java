@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mirae.biz.user.UserVO;
-import com.mirae.biz.user.bimplement.UserDAO;
+import com.mirae.biz.user.implement.UserDAO;
 import com.mirae.controller.Controller;
 
 public class LoginController implements Controller {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mirae.biz.user.UserVO;
-import com.mirae.biz.user.bimplement.UserDAO;
+import com.mirae.biz.user.implement.UserDAO;
 
 @Controller
 public class UserController {

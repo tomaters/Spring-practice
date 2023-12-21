@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">   
     
-    <context:component-scan base-package="com.mirae"></context:component-scan>
+    <context:component-scan base-package="com.mirae.biz"></context:component-scan>
     <aop:aspectj-autoproxy />
     
     <bean id="log1" class="com.mirae.biz.common.LogAdvice"></bean>

@@ -1,4 +1,4 @@
-package com.mirae.biz.user.bimplement;
+package com.mirae.biz.user.implement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

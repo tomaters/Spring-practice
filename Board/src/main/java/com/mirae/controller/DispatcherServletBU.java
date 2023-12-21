@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.mirae.biz.board.BoardVO;
 import com.mirae.biz.board.implement.BoardDAO;
 import com.mirae.biz.user.UserVO;
-import com.mirae.biz.user.bimplement.UserDAO;
+import com.mirae.biz.user.implement.UserDAO;
 
 public class DispatcherServletBU extends HttpServlet {
 	private static final long serialVersionUID = 1L;
