@@ -35,8 +35,8 @@
 	<!-- USER INFO -->
 	<div class="container-lg mx-auto p-4 d-flex justify-content-end">
 		<div id="welcome_profile">
-				<div id="profile_greeting" class="text-center">Hello, ${name}</div>
-				<div class=""><img src="${profpic_path}" alt="Profile picture" class="img-fluid"></div>
+				<div id="profile_greeting" class="text-center">Hello, ${user.name}</div>
+				<div class=""><img src="images/${profpic_path}" alt="Profile picture" class="img-fluid"></div>
 		</div>
 	</div>
 	

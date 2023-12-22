@@ -95,5 +95,6 @@ List<BoardVO> boardList = (List) session.getAttribute("boardList");
 				<a class="text-decoration-none text-muted" href="insertBoard.jsp"><p class="text-white">Submit an article<p></a>
 			</div>
 	</div>
+	<a href="dataTransform.do">Data transform</a>
 </body>
 </html>

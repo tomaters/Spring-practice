@@ -17,11 +17,12 @@ public class UserDAO {
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 	
-	private final String CREATE_USER = "INSERT INTO timeline_user (username, password, name, email, profpic_path) VALUES (?, ?, ?, ?, 'images/default_image.png')";
-
+	private final String CREATE_USER = "INSERT INTO timeline_user (username, password, name, email, profpic_path) VALUES (?, ?, ?, ?, 'default_image.png')";
 	private final String GET_USER = "SELECT * FROM timeline_user WHERE username=? AND password=?";
-	private final String VIEW_ACCOUNT = "SELECT * FROM timeline_user WHERE username=?";
+	private final String UPDATE_PROFPIC_PATH = "UPDATE timeline_user SET profpic_path =? WHERE username=?";
 	private final String DELETE_ACCOUNT = "DELETE FROM timeline_user WHERE username=?";
+	
+	private final String VIEW_ACCOUNT = "SELECT * FROM timeline_user WHERE username=?";
 			
 	public void createAccount(UserVO userVO) {
 		System.out.println("UserDAO userVO: " + userVO.getUsername() + " " + userVO.getPassword() + " " + userVO.getName() + " " + userVO.getEmail() + " " + userVO.getEmail() + " " + userVO.getProfpic_path());
@@ -68,6 +69,35 @@ public class UserDAO {
 		} return user;
 	}
 	
+	public void setProfpicPath(UserVO userVO) {
+		try {
+			connection = JDBCUtil.getConnection();
+			preparedStatement = connection.prepareStatement(UPDATE_PROFPIC_PATH);
+			preparedStatement.setString(1, userVO.getProfpic_path());
+			preparedStatement.setString(2, userVO.getUsername());		
+			preparedStatement.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(resultSet,  preparedStatement, connection);
+		}
+	}
+	
+	public void deleteAccount(UserVO userVO) {
+		System.out.println("deleteAccount() called");
+		try {
+			connection = JDBCUtil.getConnection();
+			preparedStatement = connection.prepareStatement(DELETE_ACCOUNT);
+			preparedStatement.setString(1, userVO.getUsername());
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(preparedStatement, connection);
+		}
+	}
+	
+	
 	public UserVO viewAccount(String id) {
 		UserVO user = null;
 		System.out.println("viewAccount() method called");
@@ -90,18 +120,4 @@ public class UserDAO {
 		} return user;
 	}
 	
-	// delete method
-	public void deleteAccount(UserVO userVO) {
-		System.out.println("deleteAccount() called");
-		try {
-			connection = JDBCUtil.getConnection();
-			preparedStatement = connection.prepareStatement(DELETE_ACCOUNT);
-			preparedStatement.setString(1, userVO.getUsername());
-			preparedStatement.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(preparedStatement, connection);
-		}
-	}
 }
