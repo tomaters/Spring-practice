@@ -65,12 +65,12 @@
 			</div>
 			<div class="d-flex align-items-center justify-content-center">
 				<div>
-					<form action="updateAccount.do" method="post">
+					<form action="updateAccount.do" method="get">
 						<button type="submit" class="btn btn-light ms-2 border-secondary">Edit account details</button>
 					</form>
 				</div>
 				<div>
-					<form action="deleteAccount.do" method="post">
+					<form action="deleteAccount.do" method="get">
 						<button type="submit" class="btn btn-light ms-2 border-secondary">Delete account</button>
 					</form>
 				</div>

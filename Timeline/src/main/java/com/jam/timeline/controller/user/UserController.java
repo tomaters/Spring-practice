@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,6 +41,7 @@ public class UserController {
 		}
 		UserVO user = userDAO.login(userVO);
 		if (user != null) {
+			session.setAttribute("username", user.getUsername());
 			session.setAttribute("profpic_path", user.getProfpic_path());
 			model.addAttribute("user", user);
 			System.out.println("after login(): " + user.toString());
@@ -62,9 +64,8 @@ public class UserController {
 	
 	@RequestMapping(value = "/submitProfpic.do")
 	public String submitProfpic(UserVO userVO, UserDAO userDAO, HttpSession session) throws IllegalStateException, IOException {
-		System.out.println("submitProfPic()");
 		userVO.setUsername((String)session.getAttribute("username"));
-		System.out.println(userVO.toString());
+		System.out.println("submitProfPic(): " + userVO.toString());
 		MultipartFile profpicFile = userVO.getProfpicFile();
 		// if a file exists
 		if(!profpicFile.isEmpty()) {
@@ -79,12 +80,12 @@ public class UserController {
 				// set filename as userVO variable
 				userVO.setProfpic_path(fileName);
 				// test
-				System.out.println(userVO.toString());
+				System.out.println("DB storage: " + userVO.toString());
 				// save filename into DB
 				userDAO.setProfpicPath(userVO);
 				// create file with path to image folder and name of the image to save
 //				File saveFile = new File("images/" + fileName);
-				File saveFile = new File("C:/DEV/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Timeline/images/" + fileName);
+				File saveFile = new File("C://spring/spring-workspace/spring-practice/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Timeline/images/" + fileName);
 				// create directory if it doesn't exist
 				if (!saveFile.exists()) {
 					saveFile.mkdirs();  
@@ -109,19 +110,38 @@ public class UserController {
 	public String goToTimeline(UserVO userVO) {
 		return "timeline";
 	}
+	@RequestMapping(value="/deleteAccount.do", method = RequestMethod.GET)
+	public String deleteAccountView() {
+		return "deleteAccount";
+	}
 	
-	@RequestMapping(value = "/deleteAccount.do")
+	@RequestMapping(value = "/deleteAccount.do", method= RequestMethod.POST)
 	public String deleteAccount(UserVO userVO, UserDAO userDAO) {
 		System.out.println("deleteAccount()");
 		System.out.println("mapping: " + userVO.getUsername() + ", " + userVO.getPassword());
 		userDAO.deleteAccount(userVO);
-		return "redirect:home.jsp";
+		return "redirect:logout.do";
 	}
 	
-	@RequestMapping(value = "/updateAccount.do")
-	public String updateAccount(UserVO userVO, UserDAO userDAO) {
-		
-		
-		return "timeline";
+	@RequestMapping(value = "/updateAccount.do", method = RequestMethod.GET)
+	public String updateAccountView() {
+		return "updateAccount";
+	}
+	
+	@RequestMapping(value = "/updateAccount.do", method = RequestMethod.POST)
+	public String updateAccount(UserVO userVO, UserDAO userDAO, Model model, HttpSession session) {
+		System.out.println(userVO.toString());
+		String previousUsername = (String)session.getAttribute("username");
+		System.out.println("pre: " + previousUsername);
+		UserVO user = new UserVO();
+		user.setUsername(userVO.getUsername());
+		user.setPassword(userVO.getPassword());
+		user.setName(userVO.getName());
+		user.setEmail(userVO.getEmail());
+		user.setReg_date(userVO.getReg_date());
+		System.out.println("user: " + user.toString());
+		userDAO.updateUser(userVO, previousUsername);
+		model.addAttribute("user", user);
+		return "myAccount";
 	}
 }

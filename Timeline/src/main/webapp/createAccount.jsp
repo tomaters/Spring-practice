@@ -32,7 +32,7 @@
 		<h1 class="text-center text-muted">Create an account</h1>
 		<div style="text-align: right; font-style: italic;"></div>
 		<hr>
-		<form action="createAccount.do" method="post"
+		<form id="createAccountForm" action="createAccount.do" method="post"
 			onsubmit="return creationSuccess()">
 			<div class="message" align="center"
 				style="font-weight: bold; margin-bottom: 10px;">
@@ -43,7 +43,7 @@
 				<tr>
 					<td>Username</td>
 					<td align="left"><input class="w-100 rounded" type="text"
-						name="username" onblur="checkDuplicate()"></td>
+						name="username" onblur="checkUsername()"></td>
 				</tr>
 				<tr>
 					<td>Password</td>
@@ -69,7 +69,23 @@
 	</div>
 </body>
 <script>
-	function creationSuccess() {
+	function checkUsername(){
+		const username = document.getElementById('username').value;
+		
+		fetch('/api/users/checkUsername?username=${username}')
+		.then(response => response.json())
+		.then(data => {
+			if(data.exists) {
+				alert('That username already exists');
+			}
+		})
+		.catch(error => {
+			console.error('Error', error);
+			alert('An error occurred. Try again');
+		});
+	}
+	
+	function creationSuccess(){
 		alert("Account created successfully");
 		return true;
 	}
