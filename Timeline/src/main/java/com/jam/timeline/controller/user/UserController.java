@@ -140,7 +140,7 @@ public class UserController {
 		user.setEmail(userVO.getEmail());
 		user.setReg_date(userVO.getReg_date());
 		System.out.println("user: " + user.toString());
-		userDAO.updateUser(userVO, previousUsername);
+		userDAO.updateAccount(userVO, previousUsername);
 		model.addAttribute("user", user);
 		return "myAccount";
 	}

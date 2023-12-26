@@ -141,7 +141,7 @@ public class UserDAO {
 		return usernameExists;
 	}
 	
-	public void updateUser(UserVO userVO, String previousUsername) {
+	public void updateAccount(UserVO userVO, String previousUsername) {
 		try {
 			connection = JDBCUtil.getConnection();
 			preparedStatement = connection.prepareStatement(UPDATE_USER);
