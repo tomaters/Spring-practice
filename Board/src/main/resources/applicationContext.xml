@@ -11,6 +11,23 @@
     <context:component-scan base-package="com.mirae.biz"></context:component-scan>
     <aop:aspectj-autoproxy />
     
+    <context:property-placeholder location="classpath:dbproperties"/>
+    <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
+         <property name="driverClassName" value="${jdbc.driverClassName}"/>
+         <property name="url"             value="${jdbc.url}"/>
+         <property name="username"        value="${jdbc.username}"/>
+         <property name="password"        value="${jdbc.password}"/>
+     </bean>    
+    
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="configLocation" value="classpath:sql-map-config.xml"/>
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg ref="sqlSession"/>
+    </bean>
+    
     <bean id="log1" class="com.mirae.biz.common.LogAdvice"></bean>
     <bean id="log2" class="com.mirae.biz.common.LogAdvice2"></bean>
     

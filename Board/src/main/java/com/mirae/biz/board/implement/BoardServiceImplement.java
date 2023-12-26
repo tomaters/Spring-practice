@@ -11,7 +11,7 @@ import com.mirae.biz.board.BoardVO;
 @Service("boardServiceImplement")
 public class BoardServiceImplement implements BoardService {
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardDAOMybatis boardDAO;
 	
 	@Override
 	public void insertBoard(BoardVO boardVO) {
