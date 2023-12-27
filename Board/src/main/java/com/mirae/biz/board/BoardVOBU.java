@@ -1,39 +1,22 @@
 package com.mirae.biz.board;
 
-
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name="myboard")
-public class BoardVO {
-	@Id
-	@GeneratedValue
+public class BoardVOBU {
 	private int sequence;
 	private String title;
 	private String username;
 	private String content;
-	@Temporal(TemporalType.DATE)
-	private Date regDate =new Date();
+	private Date regDate;
 	private int count;
-	@Transient
 	private String searchCondition;
-	@Transient
 	private String searchKeyword;
 	// to use, import library from MVN Repository: Apache Commons FileUpload into pom.xml
 	// also need to set MultipartResolver in presentation-layer.xml
-	@Transient
 	private MultipartFile uploadFile; 
 
 	public MultipartFile getUploadFile() {

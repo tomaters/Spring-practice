@@ -3,7 +3,7 @@ package com.mirae.controller.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.BoardVOBU;
 import com.mirae.biz.board.implement.BoardDAO;
 import com.mirae.controller.Controller;
 
@@ -19,7 +19,7 @@ public class InsertBoardController implements Controller {
 			String content = request.getParameter("content");
 			
 		// 2. manage DB
-			BoardVO vo = new BoardVO();
+			BoardVOBU vo = new BoardVOBU();
 			vo.setTitle(title);
 			vo.setUsername(username);
 			vo.setContent(content);

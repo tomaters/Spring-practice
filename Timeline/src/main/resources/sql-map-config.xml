@@ -6,7 +6,7 @@
 
 	<!-- setting alias -->
 	<typeAliases>
-		<typeAlias alias="user" type="com.jam.timeline.biz.user.UserVO"/>
+		<typeAlias alias="userVO" type="com.jam.timeline.biz.user.UserVO"/>
 	</typeAliases>
   
   <!-- retrieve user-mappings.xml that contains SQL mappings -->

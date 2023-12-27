@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">   
+    
+    <context:component-scan base-package="com.mirae.biz"></context:component-scan>
+    <aop:aspectj-autoproxy />
+    
+    <context:property-placeholder location="classpath:dbproperties"/>
+    <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
+         <property name="driverClassName" value="${jdbc.driverClassName}"/>
+         <property name="url"             value="${jdbc.url}"/>
+         <property name="username"        value="${jdbc.username}"/>
+         <property name="password"        value="${jdbc.password}"/>
+     </bean>    
+    <!-- Spring-JPA connection -->
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+    <bean id="entityManagerFactoryBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    	<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    
+    <!-- Transactions; rollback if exception occurs -->
+    <!--  
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+         <property name="dataSource" ref="dataSource"/>
+     </bean>
+ 		-->
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+         <property name="dataSource" ref="dataSource"/>
+     </bean>
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+         <tx:attributes>
+             <tx:method name="" rollback-for="Exception"/>
+         </tx:attributes>
+     </tx:advice>
+
+     <aop:config>
+         <aop:pointcut id="txPointcut" expression="execution(* com.mirae.biz..*Implement.*(..))"/>
+
+         <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+     </aop:config>
+    
+    
+    
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="configLocation" value="classpath:sql-map-config.xml"/>
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg ref="sqlSession"/>
+    </bean>
+    
+    <bean id="log1" class="com.mirae.biz.common.LogAdvice"></bean>
+    <bean id="log2" class="com.mirae.biz.common.LogAdvice2"></bean>
+    
+    <aop:config>
+    	<!--  among all methods, only want to designate pointcut to methods in Implement files -->
+    	<aop:pointcut expression="execution(* com.mirae.biz..*Implement.*(..))" id="allPointcut"/>
+    	
+    	<aop:pointcut expression="execution(* com.mirae.biz..*Implement.get*(..))" id="getPointcut"/>
+
+    	<aop:aspect ref="log1"> <!-- AFTER -->
+    		<aop:after method="printLog" pointcut-ref="allPointcut"/>
+    	</aop:aspect>
+    	<aop:aspect ref="log2"> <!-- BEFORE (changed to after-returning with returning object because before is simple) -->
+    		<aop:after-returning method="printLog2" pointcut-ref="getPointcut" returning="returnObj"/>
+    	</aop:aspect>
+    	
+    	<!-- beans hereafter created with annotations;
+    	
+    	AFTER-RETURNING; log3 entirely replaced with annotations
+    	<aop:aspect ref="log3"> 
+    		<aop:after-returning method="printLog3" pointcut-ref="allPointcut"/>
+    	</aop:aspect> -->
+    	<aop:aspect ref="log4"> <!-- AFTER-THROWING -->
+    		<aop:after-throwing method="printLog4" pointcut-ref="allPointcut" throwing="exception"/>
+    	</aop:aspect>
+    	<aop:aspect ref="log5"> <!-- AROUND -->
+    		<aop:around method="printLog5" pointcut-ref="allPointcut"/>
+    	</aop:aspect>
+    </aop:config>
+    
+	<!-- Replaced with annotations
+	     <bean id="userService" class="com.mirae.user.implement.UserServiceImplement">
+	    	<property name="userDAO" ref="userDAO"></property>
+	    </bean>
+	    
+	    <bean id="userDAO" class="com.mirae.user.implement.UserDAO"/> 
+	-->
+</beans>

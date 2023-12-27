@@ -3,7 +3,7 @@ package com.mirae.controller.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.BoardVOBU;
 import com.mirae.biz.board.implement.BoardDAO;
 import com.mirae.controller.Controller;
 
@@ -17,7 +17,7 @@ public class DeleteBoardController implements Controller {
 		String sequence = request.getParameter("sequence");
 
 		// 2. manage DB
-		BoardVO vo = new BoardVO();
+		BoardVOBU vo = new BoardVOBU();
 		vo.setSequence(Integer.parseInt(sequence));
 		
 		BoardDAO boardDAO = new BoardDAO();

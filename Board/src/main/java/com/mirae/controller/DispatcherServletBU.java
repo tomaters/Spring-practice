@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.BoardVOBU;
 import com.mirae.biz.board.implement.BoardDAO;
 import com.mirae.biz.user.UserVO;
 import com.mirae.biz.user.implement.UserDAO;
@@ -72,7 +72,7 @@ public class DispatcherServletBU extends HttpServlet {
 				String content = request.getParameter("content");
 				
 			// 2. manage DB
-				BoardVO vo = new BoardVO();
+				BoardVOBU vo = new BoardVOBU();
 				vo.setTitle(title);
 				vo.setUsername(username);
 				vo.setContent(content);
@@ -92,7 +92,7 @@ public class DispatcherServletBU extends HttpServlet {
 			String sequence = request.getParameter("sequence");
 			
 			// 2. manage DB
-			BoardVO vo = new BoardVO();
+			BoardVOBU vo = new BoardVOBU();
 			vo.setTitle(title);
 			vo.setContent(content);
 			vo.setSequence(Integer.parseInt(sequence));
@@ -110,7 +110,7 @@ public class DispatcherServletBU extends HttpServlet {
 			String sequence = request.getParameter("sequence");
 
 			// 2. manage DB
-			BoardVO vo = new BoardVO();
+			BoardVOBU vo = new BoardVOBU();
 			vo.setSequence(Integer.parseInt(sequence));
 			
 			BoardDAO boardDAO = new BoardDAO();
@@ -126,11 +126,11 @@ public class DispatcherServletBU extends HttpServlet {
 			String sequence = request.getParameter("sequence");
 
 			// 2. manage DB
-			BoardVO vo = new BoardVO();
+			BoardVOBU vo = new BoardVOBU();
 			vo.setSequence(Integer.parseInt(sequence));
 
 			BoardDAO boardDAO = new BoardDAO();
-			BoardVO board = boardDAO.getBoard(vo);
+			BoardVOBU board = boardDAO.getBoard(vo);
 
 			// 3. get response view
 			HttpSession session = request.getSession();
@@ -142,9 +142,9 @@ public class DispatcherServletBU extends HttpServlet {
 
 			// 1. get info
 			// 2. manage DB
-			BoardVO vo = new BoardVO();
+			BoardVOBU vo = new BoardVOBU();
 			BoardDAO boardDAO = new BoardDAO();
-			List<BoardVO> boardList = boardDAO.getBoardList(vo);
+			List<BoardVOBU> boardList = boardDAO.getBoardList(vo);
 
 			// 3. get response view
 			HttpSession session = request.getSession();

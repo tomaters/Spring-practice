@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.BoardVOBU;
 import com.mirae.biz.board.implement.BoardDAO;
 import com.mirae.controller.Controller;
 
@@ -18,9 +18,9 @@ public class GetBoardListController implements Controller {
 
 		// 1. get info
 		// 2. manage DB
-		BoardVO vo = new BoardVO();
+		BoardVOBU vo = new BoardVOBU();
 		BoardDAO boardDAO = new BoardDAO();
-		List<BoardVO> boardList = boardDAO.getBoardList(vo);
+		List<BoardVOBU> boardList = boardDAO.getBoardList(vo);
 
 		// 3. get response view
 		HttpSession session = request.getSession();

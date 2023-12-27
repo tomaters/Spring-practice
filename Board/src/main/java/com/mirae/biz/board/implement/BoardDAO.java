@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.mirae.biz.board.BoardVO;
+import com.mirae.biz.board.BoardVOBU;
 import com.mirae.biz.common.JDBCUtil;
 
 @Repository("boardDAO")
@@ -28,7 +28,7 @@ public class BoardDAO {
 	private final String BOARD_LIST_SEARCH_CONTENT = "SELECT * FROM myboard WHERE content like '%' || ? || '%' ORDER BY sequence DESC";
 
 	// insert method
-	public void insertBoard(BoardVO boardVO) {
+	public void insertBoard(BoardVOBU boardVO) {
 		System.out.println("insertBoard() called");
 		try {
 			connection = JDBCUtil.getConnection();
@@ -45,7 +45,7 @@ public class BoardDAO {
 	}
 
 	// edit method
-	public void updateBoard(BoardVO boardVO) {
+	public void updateBoard(BoardVOBU boardVO) {
 		System.out.println("updateBoard() called");
 		try {
 			connection = JDBCUtil.getConnection();
@@ -62,7 +62,7 @@ public class BoardDAO {
 	}
 
 	// delete method
-	public void deleteBoard(BoardVO boardVO) {
+	public void deleteBoard(BoardVOBU boardVO) {
 		System.out.println("deleteBoard() called");
 		try {
 			connection = JDBCUtil.getConnection();
@@ -77,16 +77,16 @@ public class BoardDAO {
 	}
 
 	// view board method
-	public BoardVO getBoard(BoardVO boardVO) {
+	public BoardVOBU getBoard(BoardVOBU boardVO) {
 		System.out.println("getBoard() called");
-		BoardVO board = null;
+		BoardVOBU board = null;
 		try {
 			connection = JDBCUtil.getConnection();
 			preparedStatement = connection.prepareStatement(BOARD_GET);
 			preparedStatement.setInt(1, boardVO.getSequence());
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				board = new BoardVO();
+				board = new BoardVOBU();
 				board.setSequence(resultSet.getInt("sequence"));
 				board.setTitle(resultSet.getString("title"));
 				board.setUsername(resultSet.getString("username"));
@@ -103,9 +103,9 @@ public class BoardDAO {
 	}
 
 	// view board list method
-	public List<BoardVO> getBoardList(BoardVO boardVO) {
+	public List<BoardVOBU> getBoardList(BoardVOBU boardVO) {
 		System.out.println("getBoardList() called");
-		List<BoardVO> boardList = new ArrayList<>();
+		List<BoardVOBU> boardList = new ArrayList<>();
 		try {
 			connection = JDBCUtil.getConnection();
 			if(boardVO.getSearchCondition().equals("title")) {
@@ -126,7 +126,7 @@ public class BoardDAO {
 			}
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				BoardVO board = new BoardVO();
+				BoardVOBU board = new BoardVOBU();
 				board.setSequence(resultSet.getInt("sequence"));
 				board.setTitle(resultSet.getString("title"));
 				board.setUsername(resultSet.getString("username"));
