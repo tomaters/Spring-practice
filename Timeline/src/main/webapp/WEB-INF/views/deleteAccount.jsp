@@ -23,10 +23,12 @@
 			</form></td>
 		</table>
 	</div>
+	
+	<!-- MAIN -->
 	<div class="container-sm mx-auto p-4 border-bottom">
 		<h4 class="text-center text-muted">Delete account?</h4>
 		<hr />
-		<form action="deleteAccount.do" method="post" onsubmit="return creationSuccess()">
+		<form action="deleteAccount.do" method="post" onsubmit="return deletionSuccess()">
 			<table
 				class="container table text-center table-bordered w-50 mx-auto table-dark shadow">
 				<tr>
@@ -41,7 +43,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button type="submit" class="btn btn-light w-25">Submit</button>
+						<button type="submit" class="btn btn-light w-25" onclick="return confirmDelete()">Delete account</button>
 					</td>
 				</tr>
 			</table>
@@ -49,6 +51,15 @@
 	</div>
 </body>
 <script>
+	function confirmDelete(){
+		var isConfirmed = confirm("Are you sure you want to delete your account?")
+		if(isConfirmed){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	function deletionSuccess() {
 		alert("Account deleted successfully");
 		return true;

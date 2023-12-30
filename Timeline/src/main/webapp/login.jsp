@@ -23,12 +23,13 @@
 					</form></td>
 		</table>
 	</div>
+	<!-- MAIN -->
 	<div class="container-sm mx-auto p-4 border-bottom">
 		<h4 class="text-center text-muted">Log In</h4>
 		<hr />
-		<form action="login.do" method="post">
+		<form action="login.do" method="post" name=loginForm>
 			<table
-				class="container table text-center table-bordered w-50 mx-auto table-dark shadow">
+				class="container table text-center table-bordered w-75 mx-auto table-dark shadow">
 				<tr>
 					<td class="p-2 align-middle">Username</td>
 					<td align="left"><input type="text" name="username"
@@ -41,11 +42,27 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button type="submit" class="btn btn-light w-25">Log In</button>
+						<button type="submit" class="btn btn-light w-25" onclick="checkNull()">Log In</button>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 </body>
+<script>
+	function checkNull() {
+		event.preventDefault();
+		if(document.loginForm.username.value=="") {
+			alert("Please enter a username");
+			document.loginForm.username.focus();
+			return;
+		}
+		if(document.loginForm.password.value==""){
+			document.loginForm.password.focus();
+			alert("Please enter a password");
+			return;
+		}
+		document.loginForm.submit();
+	}
+</script>
 </html>

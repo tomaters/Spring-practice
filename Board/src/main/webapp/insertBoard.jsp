@@ -55,7 +55,7 @@
 		if(document.writeform.title.value=="") {
 			alert("Please enter a title");
 			document.writeform.title.focus();
-			return;
+			return false;
 		}
 		if(document.writeform.username.value==""){
 			document.writeform.username.focus();

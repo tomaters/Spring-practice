@@ -17,30 +17,27 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void login(UserVO userVO) {
-		userDAO.login(userVO);
-	}
-
-	@Override
-	public void logout(UserVO userVO) {
-		// TODO Auto-generated method stub
-		
+	public UserVO login(UserVO userVO) {
+		return userDAO.login(userVO);
 	}
 
 	@Override
 	public void submitProfpic(UserVO userVO) {
-		// TODO Auto-generated method stub
-		
+		userDAO.setProfpicPath(userVO);
 	}
 
 	@Override
 	public void deleteAccount(UserVO userVO) {
-		// TODO Auto-generated method stub
-		
+		userDAO.deleteAccount(userVO);
 	}
 
 	@Override
-	public void updateAccount(UserVO userVO) {
+	public void updateAccount(UserVO userVO, String previousUsername) {
+		userDAO.updateAccount(userVO, previousUsername);
+	}
+
+	@Override
+	public void setProfpicPath(UserVO userVO) {
 		// TODO Auto-generated method stub
 		
 	}

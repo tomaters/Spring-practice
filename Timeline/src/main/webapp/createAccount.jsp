@@ -32,18 +32,17 @@
 		<h1 class="text-center text-muted">Create an account</h1>
 		<div style="text-align: right; font-style: italic;"></div>
 		<hr>
-		<form id="createAccountForm" action="createAccount.do" method="post"
-			onsubmit="return creationSuccess()">
+		<form action="createAccount.do" method="post" onsubmit="return creationSuccess()" name="createAccountForm">
 			<div class="message" align="center"
 				style="font-weight: bold; margin-bottom: 10px;">
 				test</div>
 			<table
-				class="table text-center table-bordered table-dark w-25 mx-auto shadow"
+				class="table text-center table-bordered table-dark w-75 mx-auto shadow"
 				style="margin-bottom: 10px;">
 				<tr>
 					<td>Username</td>
 					<td align="left"><input class="w-100 rounded" type="text"
-						name="username" onblur="checkUsername()"></td>
+						name="username"></td>
 				</tr>
 				<tr>
 					<td>Password</td>
@@ -61,33 +60,43 @@
 						name="email" size="10"></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><button type="submit"
-							class="btn btn-light">Create account</button></td>
+					<td colspan="2" align="center">
+						<input type="submit" class="btn btn-light" value="Create account" onclick="checkNull()"/>
+					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 </body>
 <script>
-	function checkUsername(){
-		const username = document.getElementById('username').value;
-		
-		fetch('/api/users/checkUsername?username=${username}')
-		.then(response => response.json())
-		.then(data => {
-			if(data.exists) {
-				alert('That username already exists');
-			}
-		})
-		.catch(error => {
-			console.error('Error', error);
-			alert('An error occurred. Try again');
-		});
-	}
-	
 	function creationSuccess(){
 		alert("Account created successfully");
 		return true;
+	}
+	
+	function checkNull() {
+		event.preventDefault();
+		if(document.createAccountForm.username.value=="") {
+			alert("Please enter a username");
+			document.createAccountForm.username.focus();
+			return;
+		}
+		if(document.createAccountForm.password.value==""){
+			document.createAccountForm.password.focus();
+			alert("Please enter a password");
+			return;
+		}
+		if(document.createAccountForm.name.value==""){
+			document.createAccountForm.name.focus();
+			alert("Please enter a name");
+			return;
+		}
+		if(document.createAccountForm.email.value==""){
+			document.createAccountForm.email.focus();
+			alert("Please enter an email");
+			return;
+		}
+		document.createAccountForm.submit();
 	}
 </script>
 </html>

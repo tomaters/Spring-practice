@@ -26,20 +26,20 @@ public class UserController {
 	private UserService userService; 
 	
 	@RequestMapping(value = "/createAccount.do")
-	public String createAccount(UserVO userVO, UserDAO userDAO) {
+	public String createAccount(UserVO userVO) {
 		System.out.println("createAccount()");
 		System.out.println(userVO.toString());
-		userDAO.createAccount(userVO);
+		userService.createAccount(userVO);
 		return "redirect:login.jsp";
 	}
 
 	@RequestMapping(value = "/login.do")
-	public String login(UserVO userVO, UserDAO userDAO, Model model, HttpSession session) {
+	public String login(UserVO userVO, Model model, HttpSession session) {
 		System.out.println("login(): " + userVO.toString());
 		if (userVO.getUsername() == null || userVO.getPassword() == null) {
 			System.out.println("null error");
 		}
-		UserVO user = userDAO.login(userVO);
+		UserVO user = userService.login(userVO);
 		if (user != null) {
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("profpic_path", user.getProfpic_path());
@@ -63,7 +63,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/submitProfpic.do")
-	public String submitProfpic(UserVO userVO, UserDAO userDAO, HttpSession session) throws IllegalStateException, IOException {
+	public String submitProfpic(UserVO userVO, HttpSession session) throws IllegalStateException, IOException {
 		userVO.setUsername((String)session.getAttribute("username"));
 		System.out.println("submitProfPic(): " + userVO.toString());
 		MultipartFile profpicFile = userVO.getProfpicFile();
@@ -82,7 +82,7 @@ public class UserController {
 				// test
 				System.out.println("DB storage: " + userVO.toString());
 				// save filename into DB
-				userDAO.setProfpicPath(userVO);
+				userService.setProfpicPath(userVO);
 				// create file with path to image folder and name of the image to save
 //				File saveFile = new File("images/" + fileName);
 				File saveFile = new File("C://spring/spring-workspace/spring-practice/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Timeline/images/" + fileName);
@@ -110,16 +110,17 @@ public class UserController {
 	public String goToTimeline(UserVO userVO) {
 		return "timeline";
 	}
+	
 	@RequestMapping(value="/deleteAccount.do", method = RequestMethod.GET)
 	public String deleteAccountView() {
 		return "deleteAccount";
 	}
 	
 	@RequestMapping(value = "/deleteAccount.do", method= RequestMethod.POST)
-	public String deleteAccount(UserVO userVO, UserDAO userDAO) {
+	public String deleteAccount(UserVO userVO) {
 		System.out.println("deleteAccount()");
 		System.out.println("mapping: " + userVO.getUsername() + ", " + userVO.getPassword());
-		userDAO.deleteAccount(userVO);
+		userService.deleteAccount(userVO);
 		return "redirect:logout.do";
 	}
 	
@@ -129,7 +130,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/updateAccount.do", method = RequestMethod.POST)
-	public String updateAccount(UserVO userVO, UserDAO userDAO, Model model, HttpSession session) {
+	public String updateAccount(UserVO userVO, Model model, HttpSession session) {
 		System.out.println(userVO.toString());
 		String previousUsername = (String)session.getAttribute("username");
 		System.out.println("pre: " + previousUsername);
@@ -140,7 +141,7 @@ public class UserController {
 		user.setEmail(userVO.getEmail());
 		user.setReg_date(userVO.getReg_date());
 		System.out.println("user: " + user.toString());
-		userDAO.updateAccount(userVO, previousUsername);
+		userService.updateAccount(userVO, previousUsername);
 		model.addAttribute("user", user);
 		return "myAccount";
 	}
