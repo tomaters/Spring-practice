@@ -10,19 +10,19 @@
   <select id="login" parameterType="userVO" resultType="userVO">
 		SELECT * FROM timeline_user WHERE username=#{username} AND password=#{password}
   </select>
-  <select id="setProfpicPath" parameterType="userVO">
+  <update id="setProfpicPath" parameterType="userVO">
 		UPDATE timeline_user SET profpic_path =#{profpic_path} WHERE username=#{username}
-  </select>
-  <select id="deleteAccount" parameterType="userVO">
+  </update>
+  <delete id="deleteAccount" parameterType="userVO">
 		DELETE FROM timeline_user WHERE username=#{username}
-  </select>
+  </delete>
   <select id="viewAccount" parameterType="String" resultType="userVO">
 		SELECT * FROM timeline_user WHERE username=#{username}
   </select>
   <select id="checkUsername" parameterType="String" resultType="boolean">
 		SELECT * FROM timeline_user WHERE username=#{username}
   </select>
-  <select id="updateAccount" resultType="userVO">
+  <update id="updateAccount" parameterType="userVO">
 		UPDATE timeline_user SET username=#{username}, password=#{password}, name=#{name}, email=#{email} WHERE username=#{username}
-  </select>
+  </update>
 </mapper>

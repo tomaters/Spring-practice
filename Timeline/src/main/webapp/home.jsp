@@ -12,15 +12,15 @@
 </head>
 <body>
     <div class="container-lg bg-info mx-auto p-4 border-bottom d-flex justify-content-end">
-			<table>
-				<tr>
-				<td><form action="login.jsp">
-					<button type="submit" class="btn btn-light m-2">Log In</button>
-				</form></td>
-				<td><form action="createAccount.jsp">
-					<button type="submit" class="btn btn-light m-2">Create an Account</button>
-				</form></td>
-			</table>
+		<table>
+			<tr>
+			<td><form action="login.jsp">
+				<button type="submit" class="btn btn-light m-2">Log In</button>
+			</form></td>
+			<td><form action="createAccount.jsp">
+				<button type="submit" class="btn btn-light m-2">Create an Account</button>
+			</form></td>
+		</table>
     </div>
 </body>
 </html>

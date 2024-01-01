@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jam.timeline.biz.event.EventVO;
-import com.jam.timeline.biz.event.ScheduleVO;
+import com.jam.timeline.biz.es.EventVO;
+import com.jam.timeline.biz.es.ScheduleVO;
 import com.jam.timeline.biz.user.UserService;
 import com.jam.timeline.biz.user.UserVO;
 import com.jam.timeline.biz.user.impl.UserDAO;

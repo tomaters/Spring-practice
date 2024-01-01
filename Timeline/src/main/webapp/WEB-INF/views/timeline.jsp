@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,15 +35,24 @@
 	
 	<!-- USER INFO -->
 	<div class="container-lg mx-auto p-4 d-flex justify-content-end">
-		<div id="welcome_profile">
+		<div id="welcome_profile" class="p-3">
 				<div id="profile_greeting" class="text-center">Hello, ${user.name}</div>
 				<div class=""><img src="images/${profpic_path}" alt="Profile picture" class="img-fluid"></div>
 		</div>
-	</div>
+	</div> <hr>
 	
 	<!-- TIMELINE -->
-	<div class="container-fluid mx-auto bg-light p-4 d-flex justify-content-center">
-	Timeline
+	<div class="container-fluid mx-auto p-4 d-flex justify-content-end">
+	    <h1 class="mx-auto">Timeline</h1>
+	    <form action="createEvent.do" method="get">
+	        <button type="submit" class="btn btn-light border-secondary">Create an event</button>
+	    </form>
+	    <div class="d-flex justify-content-center flex-row align-items-center">
+	    	<div>
+	    	</div>
+	    </div>
+	</div> <hr>
+	<div class="container-fluid bg-light p-4">
 	</div>
 </body>
 </html>

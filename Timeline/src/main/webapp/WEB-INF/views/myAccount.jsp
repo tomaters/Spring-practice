@@ -14,7 +14,7 @@
 </head>
 <body>
 	<!-- TOP LEFT MENU BAR -->
-	<div class="container-lg bg-info mx-auto p-4 border-bottom d-flex justify-content-end">
+	<div class="container-lg bg-info mx-auto p-4 d-flex justify-content-end">
 		<table>
 			<tr>
 			<td><form action="logout.do">
@@ -30,11 +30,11 @@
 	<div class="m-5"></div>
 	
 	<!-- USER INFO -->
-		<div class="container-lg mx-auto p-4 d-flex justify-content-center">
-			<div id="profile_greeting" class="text-center"><h3>Hello, ${user.name}</h3></div>
-		</div>
-	<div class="container-lg mx-auto p-4 d-flex flex-row justify-content-around align-items-center">
-		<div id="welcome_profile">
+	<div class="container-lg mx-auto p-4 d-flex justify-content-center">
+		<div id="profile_greeting" class="text-center"><h3>Hello, ${user.name}!	</h3></div>
+	</div>
+	<div id="account_info" class="container-lg mx-auto p-4 d-flex flex-row justify-content-around align-items-center">
+		<div id="acocunt_info_pic" class="p-4">
 			<div style="padding: 10px;" class="d-flex justify-content-center"><img src="images/${profpic_path}" alt="Profile picture" class="img-fluid"></div>
 			<div style="margin-top: 5px; font-weight: bold; text-align: center;">
 				<p>Upload Profile Picture</p>
@@ -46,7 +46,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="d-flex flex-column">
+		<div id="account_info_text" class="d-flex flex-column">
 			<div>
 				<table class="table table-striped table-hover">
 					<tr>
@@ -76,6 +76,22 @@
 				</div>
 			</div>	
 		</div>
+	</div>
+	<hr>
+	<div id="event_schedule_info" class="d-flex flex-row align-items-center justify-content-center">
+		<div id="event_info">
+			<form action="viewEventList.do" method="post">
+				<button type="submit" class="btn btn-light ms-2 border-secondary">View my events</button>
+			</form>
+		</div>
+		<div id="schedule_info">
+			<form action="viewSchedule.do" method="get">
+				<button type="submit" class="btn btn-light ms-2 border-secondary">View my schedule</button>
+			</form>
+		</div>
+	</div>
+	<hr>
+	<div id="footer" class="container-fluid bg-light p-5">
 	</div>
 </body>
 </html>

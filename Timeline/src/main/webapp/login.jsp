@@ -29,7 +29,7 @@
 		<hr />
 		<form action="login.do" method="post" name=loginForm>
 			<table
-				class="container table text-center table-bordered w-75 mx-auto table-dark shadow">
+				class="container table text-center table-bordered w-75 mx-auto table-striped shadow">
 				<tr>
 					<td class="p-2 align-middle">Username</td>
 					<td align="left"><input type="text" name="username"

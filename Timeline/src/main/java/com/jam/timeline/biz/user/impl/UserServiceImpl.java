@@ -38,8 +38,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void setProfpicPath(UserVO userVO) {
-		// TODO Auto-generated method stub
-		
+		userDAO.setProfpicPath(userVO);
 	}
 	
 

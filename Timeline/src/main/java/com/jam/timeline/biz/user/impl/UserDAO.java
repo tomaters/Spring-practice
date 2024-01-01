@@ -24,7 +24,7 @@ public class UserDAO {
 	}
 	
 	public void setProfpicPath(UserVO userVO) {
-		System.out.println("setProfpicPath()");
+		System.out.println("setProfpicPath() using " + userVO.toString());
 		mybatis.update("userDAO.setProfpicPath", userVO);
 	}
 	
