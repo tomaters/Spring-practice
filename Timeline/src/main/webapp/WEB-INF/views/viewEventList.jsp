@@ -28,22 +28,30 @@
 					<button type="submit" class="btn btn-light border-secondary">View account info</button>
 			    </form>
 			</div>
-	    </div>				
+	  </div>
+	 </div>				
 
+	<div class="container-lg p-3">
 		<!-- Search function -->
 		<form action="viewEventList.do" method="post">
 			<table class="table text-center table-bordered table-striped w-75 mx-auto shadow-lg">
 				<tr>
 					<td align="right">
-						<div class="mx-2">
-							Search by category
-							<select name="searchKeyword">
-								<option value="">Select option</option>
-								<c:forEach items="${conditionMap}" var="data">
-									<option value="${data.value}">${data.key}</option>
-								</c:forEach>
-							</select>
-							<input type="submit" value="Search"/>
+						<div class="mx-2 d-flex justify-space-between">
+							<div>
+							    <input type="checkbox" id="futureEventsCheckbox" name="futureEvents" value="true">
+    							<label for="futureEventsCheckbox">Show only future events</label>
+							</div>
+							<div>
+								Search by category
+								<select name="searchKeyword">
+									<option value="">Select option</option>
+									<c:forEach items="${conditionMap}" var="data">
+										<option value="${data.value}">${data.key}</option>
+									</c:forEach>
+								</select>
+								<input type="submit" value="Search"/>
+							</div>
 						</div>
 					</td>
 				</tr>
@@ -72,6 +80,9 @@
 	      <button type="submit" class="btn btn-light border-secondary">Create an event</button>
 	    </form>
 	    </div>
+	</div>
+	
+	<div class="container-fluid bg-light p-5">
 	</div>
 </body>
 </html>

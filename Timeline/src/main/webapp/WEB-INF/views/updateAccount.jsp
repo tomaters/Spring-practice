@@ -26,7 +26,7 @@
 			</form></td>
 		</table>
 	</div>
-	<form action="updateAccount.do" method="post">
+	<form action="updateAccount.do" name="updateAccountForm" method="post" onsubmit="return updateSuccess()">
 		<div class="d-flex justify-content-center m-3">
 			<h4 text-align="center">Update account information</h4>
 		</div>
@@ -55,7 +55,7 @@
 				<tr>
 					<td colspan="2">
 						<div class="d-flex justify-content-center">
-							<button type="submit" class="btn btn-light w-50 border-secondary m-2 ">Submit</button>
+							<button type="submit" class="btn btn-light w-50 border-secondary m-2" onclick="checkNull()">Submit</button>
 						</div>
 					</td>
 				</tr>
@@ -63,4 +63,35 @@
 		</div>	
 	</form>
 </body>
+<script>
+	function updateSuccess(){
+		alert("Account updated successfully");
+		return true;
+	}
+	
+	function checkNull() {
+		event.preventDefault();
+		if(document.updateAccountForm.username.value=="") {
+			alert("Please enter a username");
+			document.updateAccountForm.username.focus();
+			return;
+		}
+		if(document.updateAccountForm.password.value==""){
+			document.updateAccountForm.password.focus();
+			alert("Please enter a password");
+			return;
+		}
+		if(document.updateAccountForm.name.value==""){
+			document.updateAccountForm.name.focus();
+			alert("Please enter a name");
+			return;
+		}
+		if(document.updateAccountForm.email.value==""){
+			document.updateAccountForm.email.focus();
+			alert("Please enter an email");
+			return;
+		}
+		document.updateAccountForm.submit();
+	}
+</script>
 </html>

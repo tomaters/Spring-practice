@@ -22,7 +22,7 @@
 			</div>
 		</form>
 	</div>
-		<form action="updateEvent.do" method="post">
+		<form action="updateEvent.do" method="post" name="updateEventForm" onsubmit="return updateEventSuccess()">
 			<input name="event_id" type="hidden" value="${event.event_id}">
 			<input name="username" type="hidden" value="${username}">
 			<div class="m-3">
@@ -38,12 +38,12 @@
 					<tr>
 						<td>Event category</td>
 						<td align="left">
-							<div>
+							<div id="category_color">
 								${event.event_category}
 							</div>
 							<div>
 								<select id="event_category" name="event_category">
-						            <option value="">Select category</option>
+						            <option value="${event.event_category}">${event.event_category}</option>
 						            <option value="Reminder">Reminder</option>
 						            <option value="Important">Important</option>
 						            <option value="Urgent">Urgent</option>
@@ -62,7 +62,7 @@
 						<td align="left">
 							<div><fmt:formatDate value="${event.event_date}" pattern="MMMM d, yyyy" /></div>
 							<div>
-								<input type="date" name="event_date" id="event_date"/>
+								<input type="date" name="event_date" id="event_date" value="${event.event_date}"/>
 							</div>
 						</td>
 					</tr>
@@ -75,7 +75,7 @@
 						<td align="left">${event.modified_date}</td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center"><button type="submit" class="btn btn-light w-25 border-secondary">Update event</button></td>
+						<td colspan="2" align="center"><button type="submit" class="btn btn-light w-25 border-secondary" onclick="checkNull()">Update event</button></td>
 					</tr>
 				</table>
 			</div>
@@ -94,4 +94,25 @@
 		</form>
 	</div>
 </body>
+<script>
+	function updateEventSuccess(){
+		alert("Event updated successfully");
+		return true;
+	}
+	
+	function checkNull() {
+		event.preventDefault();
+		if(document.updateEventForm.event_title.value=="") {
+			alert("Please enter a title");
+			document.updateEventForm.event_title.focus();
+			return;
+		}
+		if(document.updateEventForm.event_description.value==""){
+			document.updateEventForm.event_description.focus();
+			alert("Please enter a description");
+			return;
+		}
+		document.updateEventForm.submit();
+	}
+</script>
 </html>

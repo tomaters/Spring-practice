@@ -159,7 +159,7 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-      <Context docBase="Board" path="/webapp" reloadable="true" source="org.eclipse.jst.jee.server:Board"/><Context docBase="Timeline" path="/timeline" reloadable="true" source="org.eclipse.jst.jee.server:Timeline"/><Context docBase="SpringPractice" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:SpringPractice"/><Context docBase="MybatisPractice" path="/board" reloadable="true" source="org.eclipse.jst.jee.server:MybatisPractice"/></Host>
+      <Context docBase="MybatisPractice" path="/board" reloadable="true" source="org.eclipse.jst.jee.server:MybatisPractice"/><Context docBase="Board" path="/webapp" reloadable="true" source="org.eclipse.jst.jee.server:Board"/><Context docBase="Timeline" path="/timeline" reloadable="true" source="org.eclipse.jst.jee.server:Timeline"/><Context docBase="SpringPractice" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:SpringPractice"/></Host>
     </Engine>
   </Service>
 </Server>
